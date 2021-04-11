@@ -46,4 +46,6 @@ dependencies {
 
     //Implementando libreria de Material Design, requiere version minima de Android: 21
     implementation 'com.google.android.material:material:1.0.0'
+    //Implementando libreria de recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

@@ -1,4 +1,4 @@
-package com.prodeco.conf.ui
+package com.prodeco.conf.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

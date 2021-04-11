@@ -65,7 +65,8 @@
                 android:text="Tag"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:background="@drawable/shape_topico"/>
         </LinearLayout>
     </LinearLayout>
     <View

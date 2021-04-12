@@ -9,7 +9,7 @@
     para que pueda funcionar de manera correcta  y poder enlazarlo con el bnv-->
     <fragment
         android:id="@+id/navHomeFragment"
-        android:name="com.prodeco.conf.ui.fragments.HomeFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/navScheduleFragment"
-        android:name="com.prodeco.conf.ui.fragments.ScheduleFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/navSpeakersFragment"
-        android:name="com.prodeco.conf.ui.fragments.SpeakersFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.SpeakersFragment"
         android:label="fragment_speakers"
         tools:layout="@layout/fragment_speakers" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/navMapFragment"
-        android:name="com.prodeco.conf.ui.fragments.UbicationFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.UbicationFragment"
         android:label="fragment_ubication"
         tools:layout="@layout/fragment_ubication" >
         <action
@@ -53,17 +53,17 @@
     <!-- Nota: Los Dialog no se generan con la ui la tenemos que generar de manera manual y enlazandolo con los demas fragments -->
     <dialog
         android:id="@+id/scheduleDetailFragmentDialog"
-        android:name="com.prodeco.conf.ui.fragments.ScheduleDetailDialogFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.ScheduleDetailDialogFragment"
         android:label="ScheduleDetailFragmentDialog"
         tools:layout="@layout/fragment_schedule_detail_dialog"/>
     <dialog
         android:id="@+id/speakerDetailFragmentDialog"
-        android:name="com.prodeco.conf.ui.fragments.SpeakersDetailDialogFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.SpeakersDetailDialogFragment"
         android:label="SpeakersDetailFragmentDialog"
         tools:layout="@layout/fragment_speakers_detail_dialog"/>
     <dialog
         android:id="@+id/ubicationDetailFragmentDialog"
-        android:name="com.prodeco.conf.ui.fragments.UbicationDetailDialogFragment"
+        android:name="com.prodeco.conf.view.ui.fragments.UbicationDetailDialogFragment"
         android:label="UbicationDetailFragmentDialog"
         tools:layout="@layout/fragment_ubication_detail_dialog"/>
 </navigation>

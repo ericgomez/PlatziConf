@@ -5,56 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.prodeco.conf.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.prodeco.conf.model.Conference
+import com.prodeco.conf.view.adapter.ScheduleAdapter
+import com.prodeco.conf.view.adapter.ScheduleListener
+import com.prodeco.conf.viewmodel.ScheduleViewModel
+import kotlinx.android.synthetic.main.fragment_schedule.*
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ScheduleFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ScheduleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class ScheduleFragment : Fragment(), ScheduleListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var scheduleAdapter: ScheduleAdapter
+    private lateinit var scheduleViewModel: ScheduleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_schedule, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ScheduleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ScheduleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
+        scheduleViewModel.refresh()
+
+        scheduleAdapter = ScheduleAdapter(this)
+
+        //Recuperando las vistas en una activity o fragment por medio del ID: rvSchedule en item_schedule.xml
+        rvSchedule.apply {
+            layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            adapter= scheduleAdapter
+        }
+        observeViewModel()
+    }
+
+    fun observeViewModel(){
+        scheduleViewModel.listSchedule.observe(this, Observer<List<Conference>> { schedule ->
+            scheduleAdapter.updateData(schedule)
+        })
+
+        scheduleViewModel.isLoading.observe(this, Observer<Boolean>  {
+            if(it != null)
+                rlBaseSchedule.visibility = View.INVISIBLE
+        })
+    }
+
+    // Evento Click
+    override fun onConferenceClicked(conference: Conference, position: Int) {
+        val bundle = bundleOf("conference" to conference)
+        // Navegacion a donde queremos que nos envie el detalle enviando el bundle
+        findNavController().navigate(R.id.scheduleDetailFragmentDialog, bundle)
+
     }
 }

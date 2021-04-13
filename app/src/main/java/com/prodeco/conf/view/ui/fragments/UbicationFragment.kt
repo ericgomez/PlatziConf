@@ -25,7 +25,7 @@ import com.prodeco.conf.model.Ubication
  * Use the [UbicationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UbicationFragment : Fragment(), OnMapReadyCallback {
+class UbicationFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +64,14 @@ class UbicationFragment : Fragment(), OnMapReadyCallback {
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
         googleMap?.addMarker(markerOptions)
 
+        //Mandar llamar metodo markerClick
+        googleMap?.setOnMarkerClickListener(this)
+
+    }
+
+    override fun onMarkerClick(p0: Marker?): Boolean {
+        findNavController().navigate(R.id.ubicationDetailFragmentDialog)
+        return true
     }
 
 }

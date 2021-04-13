@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <!-- Este es el principal fragmento de la corrida de nuestro proyecto -->
         <fragment
             android:id="@+id/fragContent"
             android:name="androidx.navigation.fragment.NavHostFragment"

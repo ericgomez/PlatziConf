@@ -14,13 +14,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDeoei9bNfDtOcZntCCzz-TMjkW2XtoOzg"/>
 
-        <activity android:name="com.prodeco.conf.view.ui.activities.SplashscreenActivity"></activity>
-        <activity android:name=".view.ui.activities.MainActivity">
+        <activity android:name="com.prodeco.conf.view.ui.activities.SplashscreenActivity">
+            // Indicamos que ahora la primer pantalla que se iniciara sera SplashscreenActivity
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.ui.activities.MainActivity">
+
         </activity>
     </application>
 
